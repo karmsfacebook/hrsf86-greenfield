@@ -49,6 +49,7 @@ class Profile extends React.Component {
       <div className="profile">
         <div className="backgroundAndProfilePic">
           <Image className="profilePicture" src="/images/profilePage_profilePicture.png"></Image>
+<<<<<<< HEAD
           <Header size="large" inverted color="grey" textAlign="center" className="name"> Puppers </Header>
           <Button compact inverted size="small" className="addFriend">
             <Icon name='add user'/>
@@ -58,6 +59,9 @@ class Profile extends React.Component {
             <Icon name='comments'/>
             Message Friend
           </Button>
+=======
+          <Header inverted color="grey" textAlign="center" className="name">Puppers</Header>
+>>>>>>> completed feed rendering
         </div>
         <div className="profileNavigation">
           <Button.Group floated="right" basic compact fluid labeled className="navigationButtons">
