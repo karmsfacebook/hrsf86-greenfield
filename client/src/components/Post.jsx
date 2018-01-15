@@ -13,12 +13,14 @@ class Post extends React.Component {
       clickedUsername: '',
       redirect: false,
       likers: '',
-      personalLikeCount: 0
+      personalLikeCount: 0,
+      profilePicUrl: ''
     };
   }
   componentDidMount() {
     this.getLikeAmount();
     this.getLikers();
+    this.getProfileInfo();
   }
   getLikeAmount() {
     axios.get(`/likes`, { params: { 'text': this.props.post.post_text }})
@@ -38,13 +40,6 @@ class Post extends React.Component {
   executeToggleLike() {
     let username = this.props.name;
     console.log('liked.........', username);
-    // let timestampReplaceT = this.props.post.post_timestamp.replace('T', ' ');
-    // let indexOfDot = this.props.post.post_timestamp.indexOf('.');
-    // let indexOfHyphen = this.props.post.post_timestamp.indexOf('-');
-    // let timestamp = timestampReplaceT.substring(0, indexOfDot) + timestampReplaceT.substring(indexOfHyphen, timestampReplaceT.length) + '00';
-    // console.log(timestamp);
-    // console.log(this.props.post.post_text, ' at: ', this.props.post.post_timestamp);
-
     // Get the author's username
     axios.get(`/${username}/post/author`, { params: { 'text': this.props.post.post_text }})
       .then((author) => {
@@ -106,6 +101,24 @@ class Post extends React.Component {
       redirect: true
     })
   }
+  getProfileInfo() {
+    axios.get(`/${this.props.post.first_name}/${this.props.post.last_name}`)
+      .then((username) => {
+        axios.get(`/${username.data[0].username}/profilePage`)
+          .then((info) => {
+            this.setState({
+              profilePicUrl: info.data[0].user_data.profile_picture
+            })
+            console.log('This is the profile info', info);
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
   getLikers() {
     axios.get('/likers', { params: { 'text': this.props.post.post_text }})
       .then((likers) => {
@@ -138,7 +151,7 @@ class Post extends React.Component {
         <Card fluid>
           <div className="postOverall">
             <div className="postHeader">
-              <img className="postPic" src="https://www.doghealth.com/images/stories/doghealth/front_page_puppy.jpg"/>
+              <img className="postPic" src={this.state.profilePicUrl}/>
               <div className="postBody">
                 <p className="postName">
                   <strong><span className="nameLink" onClick={this.handleClickedProfile.bind(this)}><a>{this.props.post.first_name}&nbsp;{this.props.post.last_name}</a></span></strong>

@@ -52,7 +52,7 @@ app.get('/:username/profilePage', (req, res) => {
     if (err) {
       res.status(500).send(err);
     } else {
-      console.log('data.......', data['0'].user_data.work);
+      // console.log('data.......', data['0'].user_data.work);
       res.status(200).json(data);
     }
   });
