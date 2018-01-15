@@ -86,6 +86,9 @@ body {
   max-height: 100%;
   width: 100%;
 }
+.defaultBackground {
+  background-color: #8B9DC3;
+}
 .backgroundAndProfilePic > .profilePicture {
   border: 4px solid #f2f2f2;
   grid-row: 2 / 5;
@@ -97,7 +100,7 @@ body {
   margin-top: 20%;
 }
 .backgroundAndProfilePic .name {
-  grid-column: 4 / 7;
+  grid-column: 4 / 8;
   grid-row: 3 / 5;
   z-index: 1;
   background-color: transparent;

@@ -12,7 +12,7 @@ class Profile_backgroundAndProfilePic extends React.Component {
   render() {
     console.log('profile page info...', this.props.profilePageInfo.user_data)
     return (
-      <div className="backgroundAndProfilePic">
+      <div className={this.props.profilePageInfo.cover_picture ? "backgroundAndProfilePic" : "backgroundAndProfilePic defaultBackground"}>
         <Image className="backgroundPicture" src={this.props.profilePageInfo.cover_picture}></Image>
         <Image className="profilePicture" src={this.props.profilePageInfo.profile_picture}></Image>
         <Header size="large" inverted color="grey" textAlign="center" className="name"> 
@@ -47,8 +47,8 @@ class Profile_backgroundAndProfilePic extends React.Component {
           <span></span> :
           
           <Button compact inverted size="small" className="messageFriend">
-            <Icon name='comments'/>
-            Message Friend
+            <Icon name='pointing right'/>
+            &nbsp; &nbsp; Poke {this.props.userInfo.first_name}
           </Button>
         }  
       </div>
