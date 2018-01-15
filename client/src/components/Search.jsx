@@ -145,29 +145,7 @@ class SearchBar extends Component {
     if (this.state.redirect) {
       return (
       <div>
-        <Redirect push to={profileUrl} />
-        <Grid>
-          {/* <Grid.Column width={2}> */}
-          {/* {this.abc} */}
-          <div className="search-bar">
-            <Search
-              loading={isLoading}
-              onResultSelect={this.handleResultSelect.bind(this)}
-              onSearchChange={this.handleSearchChange.bind(this)}
-              results={results}
-              value={value}
-              className="search-input"
-              // {...this.props}
-            />
-          </div>
-          {/* </Grid.Column> */}
-          {/* <Grid.Column width={8}>
-            <Header>State</Header>
-            <pre>{JSON.stringify(this.state, null, 2)}</pre>
-            <Header>Options</Header>
-            <pre>{JSON.stringify(source, null, 2)}</pre>
-          </Grid.Column> */}
-        </Grid>
+        <Redirect to={profileUrl} />
       </div>
       );
       // invoke redirect to profile url function
@@ -212,6 +190,44 @@ class SearchBar extends Component {
 //       </form>
 
 export default SearchBar;
+
+// /*
+// <Grid>
+//           {/* <Grid.Column width={2}> */}
+//           {/* {this.abc} */}
+//           <div className="search-bar">
+//             <Search
+//               loading={isLoading}
+//               onResultSelect={this.handleResultSelect.bind(this)}
+//               onSearchChange={this.handleSearchChange.bind(this)}
+//               results={results}
+//               value={value}
+//               className="search-input"
+//               // {...this.props}
+//             />
+//           </div>
+//           {/* </Grid.Column> */}
+//           {/* <Grid.Column width={8}>
+//             <Header>State</Header>
+//             <pre>{JSON.stringify(this.state, null, 2)}</pre>
+//             <Header>Options</Header>
+//             <pre>{JSON.stringify(source, null, 2)}</pre>
+//           </Grid.Column> */}
+//         </Grid>
+//         */
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // {/* <Grid>
 //             {/* <Grid.Column width={2}> */}
