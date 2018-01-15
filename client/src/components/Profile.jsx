@@ -46,6 +46,9 @@ class Profile extends React.Component {
     if (nextProps.location.pathname !== this.props.location.pathname) {
       // console.log('Yes it is different');
       console.log(nextProps.match.params.friendname);
+      this.setState({
+        profilePageOwner: nextProps.match.params.friendname
+      });
       this.getUserInfo(nextProps.match.params.friendname);
       this.getUserPosts(nextProps.match.params.friendname);
       this.getFriends(nextProps.match.params.friendname);
@@ -70,7 +73,7 @@ class Profile extends React.Component {
 
   getUserProfileInfo(user) {
     // var user = this.state.profilePageOwner;
-    // console.log('user...', this.state.profilePageOwner)
+    console.log('user...', user)
     axios.get(`/${user}/profilePage`)
       .then((responseUserProfileInfo) => {
         console.log('profile page info....', responseUserProfileInfo);
@@ -85,8 +88,7 @@ class Profile extends React.Component {
 
   getUserPosts(user) {
     var username = this.state.username;
-    var profilePageOwner = user;
-    axios.get(`/${username}/posts/${profilePageOwner}`)
+    axios.get(`/${username}/posts/${user}`)
       .then((response) => {
         this.setState({
           posts: response.data
@@ -99,11 +101,11 @@ class Profile extends React.Component {
 
   getFriends(user) {
     var username = this.state.username;
-    var otherUsername = user;
-    axios.get(`/${username}/friendsList/${otherUsername}`)
+    // var otherUsername = user;
+    axios.get(`/${username}/friendsList/${user}`)
       .then((response) => {
         console.log('friends list...', response.data);
-        var isFriend = this.checkIfFriend(username, response.data, otherUsername);
+        var isFriend = this.checkIfFriend(username, response.data, user);
         this.setState({
           friends: response.data,
           friend: isFriend
@@ -130,7 +132,7 @@ class Profile extends React.Component {
     var friendToAdd = this.state.profilePageOwner;
     axios.post(`/${username}/addFriend/${friendToAdd}`)
       .then((response) => {
-        this.getFriends();
+        this.getFriends(this.state.profilePageOwner);
       })
       .catch((error) => {
         console.log(error);
@@ -142,7 +144,7 @@ class Profile extends React.Component {
     var friendToRemove = this.state.profilePageOwner;
     axios.post(`/${username}/removeFriend/${friendToRemove}`)
       .then((response) => {
-        this.getFriends();
+        this.getFriends(this.state.profilePageOwner);
       })
       .catch((error) => {
         console.log(error);
@@ -160,7 +162,7 @@ class Profile extends React.Component {
     console.log('sending update profile request to server', changes);
     axios.patch(`/${username}/updateProfile`, changes)
       .then((response) => {
-        this.getUserProfileInfo();
+        this.getUserProfileInfo(this.state.profilePageOwner);
       })
       .catch((error) => {
         console.log(error);
@@ -183,7 +185,7 @@ class Profile extends React.Component {
         <Profile_intro view={this.state.view} profilePageInfo={this.state.profilePageInfo} />
         <Profile_friends friend={this.state.clickedFriend} getFriendName={this.getFriendName.bind(this)} friends={this.state.friends} view={this.state.view} owner={this.state.profilePageOwner} user={this.state.username} />
         <Profile_photos view={this.state.view} />
-        <Profile_postSection getUserPosts={this.getUserPosts.bind(this)} username={this.state.username} posts={this.state.posts} view={this.state.view} isOwner={this.state.isOwner} />
+        <Profile_postSection getUserPosts={this.getUserPosts.bind(this)} username={this.state.profilePageOwner} posts={this.state.posts} view={this.state.view} isOwner={this.state.isOwner} />
       </div>
     );
   }

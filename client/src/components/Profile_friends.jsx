@@ -40,7 +40,7 @@ class Profile_friends extends React.Component {
             this.props.friends.slice(0, 9).map((friend, index) => (
               <div className="friend">
                 <Link to={friendUrl}><img src={friend.picture_url} id={friend.username} onClick={(event) => this.handleClickedFriend(event) }/></Link>
-                <Link to={friendUrl}><span className="friendName" id={friend.username} onClick={(event) => this.handleClickedFriend(event) }> {friend.first_name} {friend.last_name} </span></Link>
+                <Link to={friendUrl}><span className="friendName" id={friend.username} onClick={(event) => this.handleClickedFriend(event) }><strong> {friend.first_name} {friend.last_name} </strong> </span></Link>
               </div>
             ))
           }
