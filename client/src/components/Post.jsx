@@ -139,7 +139,7 @@ class Post extends React.Component {
   render() {
     console.log('post owner',this.props.post.first_name);
     console.log('logged in name', this.props.name)
-    console.log('this is missing on own profile', this.state.clickedUsername)
+    // console.log('this is missing on own profile', this.state.clickedUsername)
 
     let clickedProfilePath = '/' + this.state.clickedUsername + '/profile/' + this.props.name;
     console.log(clickedProfilePath);
