@@ -23,6 +23,7 @@ class Profile_friends extends React.Component {
     let friendUrl = '/' + this.props.friend + '/profile/' + this.props.user;
     console.log('This is the friend URL', friendUrl);
     // if (this.state.redirect) {
+    //   console.log(this.state.redirect);
     //   return <Redirect push to={friendUrl} />;
     // }
     return (
