@@ -44,6 +44,11 @@ body {
   padding-bottom: 20px;
   margin-bottom: 20px;
 }
+.header {
+  height: 47px;
+  background-color: #3b5998;
+  margin-bottom: 20px;
+}
 .header-btn {
   margin-right: 140px;
 }
@@ -174,14 +179,14 @@ body {
   margin: 3% !important; 
   margin-top: 5% !important;
 }
-.intro > .global-header {
+.intro > .header {
   background-color: transparent;
   height: auto;
   padding-left: 1% !important;
   padding-top: 1% !important;
   margin-bottom: 0px !important;
 }
-.intro > .global-header > .introLogo {
+.intro > .header > .introLogo {
   width: 70%;
   height: auto;
   margin-right: 2% !important;
@@ -195,7 +200,7 @@ body {
   max-height: 100%;
   width: 100%;
 }
-.friendsList > .global-header {
+.friendsList > .header {
   background-color: transparent;
   height: auto;
   margin-top: 0% !important;
@@ -237,7 +242,7 @@ body {
   max-height: 100%;
   width: 100%;
 }
-.photosList > .global-header {
+.photosList > .header {
   background-color: transparent;
   height: auto;
   margin-top: 5% !important;
@@ -320,7 +325,7 @@ body {
   align-self: center;
   padding-bottom: 1%;
 }
-.title .global-header {
+.title .header {
   background-color: transparent;
   margin-bottom: 0% !important;
   height: 100%;
@@ -363,7 +368,7 @@ body {
   margin-bottom: 5%;
 }
 
-.detail > .global-header {
+.detail > .header {
   background-color: transparent;
   margin-bottom: 0% !important;
   height: 100%;
@@ -383,7 +388,7 @@ body {
   margin-bottom: 5%;
 }
 
-.detail > .global-header {
+.detail > .header {
   background-color: transparent;
   margin-bottom: 0% !important;
   height: 100%;
@@ -427,7 +432,7 @@ textarea {
   margin-top: 2.5%;
 }
 
-.title .global-header {
+.title .header {
   background-color: transparent;
   margin-bottom: 0% !important;
   height: 100%;
