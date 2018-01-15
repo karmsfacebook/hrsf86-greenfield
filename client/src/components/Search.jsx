@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Icon } from 'semantic-ui-react';
 import _ from 'lodash'
-import faker from 'faker'
+// import faker from 'faker'
 import React, { Component } from 'react'
 import { Search, Grid, Header } from 'semantic-ui-react'
 import { Redirect } from 'react-router-dom';
@@ -130,17 +130,54 @@ class SearchBar extends Component {
       })
     }, 500)
   }
+  
+  // abc() {
+  //   if (this.state.redirect) {
+  //     return <Redirect to={profileUrl} />
+  //     //invoke redirect to profile url function
+  //   }
+  // }
 
   render() {
     const { isLoading, value, results, source } = this.state
     const profileUrl = '/' + this.state.clickedName + '/profile/' + this.props.loggedInUser;
+
     if (this.state.redirect) {
-      return <Redirect to={profileUrl} />
+      return (
+      <div>
+        <Redirect push to={profileUrl} />
+        <Grid>
+          {/* <Grid.Column width={2}> */}
+          {/* {this.abc} */}
+          <div className="search-bar">
+            <Search
+              loading={isLoading}
+              onResultSelect={this.handleResultSelect.bind(this)}
+              onSearchChange={this.handleSearchChange.bind(this)}
+              results={results}
+              value={value}
+              className="search-input"
+              // {...this.props}
+            />
+          </div>
+          {/* </Grid.Column> */}
+          {/* <Grid.Column width={8}>
+            <Header>State</Header>
+            <pre>{JSON.stringify(this.state, null, 2)}</pre>
+            <Header>Options</Header>
+            <pre>{JSON.stringify(source, null, 2)}</pre>
+          </Grid.Column> */}
+        </Grid>
+      </div>
+      );
+      // invoke redirect to profile url function
     }
+
     return (
       <Grid>
         {/* <Grid.Column width={2}> */}
-        <form className="search-bar" onSubmit={this.handleSearchChange.bind(this)}>
+        {/* {this.abc} */}
+        <div className="search-bar">
           <Search
             loading={isLoading}
             onResultSelect={this.handleResultSelect.bind(this)}
@@ -150,7 +187,7 @@ class SearchBar extends Component {
             className="search-input"
             // {...this.props}
           />
-        </form>
+        </div>
         {/* </Grid.Column> */}
         {/* <Grid.Column width={8}>
           <Header>State</Header>
@@ -176,6 +213,29 @@ class SearchBar extends Component {
 
 export default SearchBar;
 
+// {/* <Grid>
+//             {/* <Grid.Column width={2}> */}
+//             {/* {this.abc} */}
+//             <div className="search-bar">
+//               <Search
+//                 loading={isLoading}
+//                 onResultSelect={this.handleResultSelect.bind(this)}
+//                 onSearchChange={this.handleSearchChange.bind(this)}
+//                 results={results}
+//                 value={value}
+//                 className="search-input"
+//                 // {...this.props}
+//               />
+//             </div>
+//             {/* </Grid.Column> */}
+//             {/* <Grid.Column width={8}>
+//               <Header>State</Header>
+//               <pre>{JSON.stringify(this.state, null, 2)}</pre>
+//               <Header>Options</Header>
+//               <pre>{JSON.stringify(source, null, 2)}</pre>
+//             </Grid.Column> */}
+//           </Grid> */}
+          // {/* {this.resetComponent()} */}
 
 /*
 const source = _.times(5, () => ({

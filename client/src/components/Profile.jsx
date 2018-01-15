@@ -42,7 +42,7 @@ class Profile extends React.Component {
   }  
 
   componentWillReceiveProps(nextProps) {
-    // console.log('I received props');
+    console.log('I received props');
     if (nextProps.location.pathname !== this.props.location.pathname) {
       // console.log('Yes it is different');
       console.log(nextProps.match.params.friendname);
