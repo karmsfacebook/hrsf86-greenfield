@@ -18,21 +18,21 @@ module.exports = {
     edit[change[0]] = change[1];
     edit = JSON.stringify(edit);
     var query = `UPDATE user_profiles set user_data = user_data::jsonb || '${edit}' where user_id = (SELECT id FROM users WHERE username = '${username}')`;
-    console.log('updating database....');
     client.query(query, (err, res) => {
       if (err) {
         callback(err, null);
       } else {  
-        console.log('updating profile pic in users table...');
-        client.query(`UPDATE users set picture_url = '${change[1]}' WHERE username = '${username}'`, (err, res) => {
-          if (err) {
-            console.log('error updating profile pic in users table', err);
-          } else {  
-            console.log('updated profile pic in users table');
-            callback(null, res.rows);
-          }
-        })
-        // callback(null, res.rows);
+        if (change[0] === 'profile_picture') {
+          client.query(`UPDATE users set picture_url = '${change[1]}' WHERE username = '${username}'`, (err, res) => {
+            if (err) {
+              console.log('error updating profile pic in users table', err);
+              callback(err, null);
+            } else {  
+              console.log('updated profile pic in users table');
+            }
+          })
+        }
+        callback(null, res.rows);
       }  
     });
   },
