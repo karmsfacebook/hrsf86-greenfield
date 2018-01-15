@@ -1,70 +1,9 @@
 import axios from 'axios';
 import { Icon } from 'semantic-ui-react';
 import _ from 'lodash'
-// import faker from 'faker'
 import React, { Component } from 'react'
 import { Search, Grid, Header } from 'semantic-ui-react'
 import { Redirect } from 'react-router-dom';
-
-/*
-const source = [
-  {
-    "title": "Matt Upham",
-    // "description": "Extended mobile protocol",
-    // "image": "https://s3.amazonaws.com/uifaces/faces/twitter/lebronjennan/128.jpg",
-    // "price": "$86.84"
-  },
-  {
-    "title": "user 2",
-    // "description": "Polarised well-modulated moratorium",
-    // "image": "https://s3.amazonaws.com/uifaces/faces/twitter/ifarafonow/128.jpg",
-    // "price": "$72.49"
-  },
-  {
-    "title": "user 3",
-    // "description": "Networked next generation data-warehouse",
-    // "image": "https://s3.amazonaws.com/uifaces/faces/twitter/thatonetommy/128.jpg",
-    // "price": "$71.05"
-  },
-  {
-    "title": "Bogan Inc",
-    // "description": "Fully-configurable mobile open architecture",
-    // "image": "https://s3.amazonaws.com/uifaces/faces/twitter/arpitnj/128.jpg",
-    // "price": "$32.34"
-  },
-  {
-    "title": "Wyman Inc",
-    // "description": "Networked client-server framework",
-    // "image": "https://s3.amazonaws.com/uifaces/faces/twitter/shojberg/128.jpg",
-    // "price": "$6.13"
-  }
-]
-*/
-
-
-// const source = [
-  // {
-  //   "id": 1,
-  //   "username": "mattupham",
-  //   "first_name": "Matt",
-  //   "last_name": "Upham",
-  //   "picture_url": "http://fb.com/mattuphamImage"
-  // },
-  // {
-  //   "id": 2,
-  //   "username": "user2",
-  //   "first_name": "User",
-  //   "last_name": "2",
-  //   "picture_url": "http://fb.com/mattuphamImage"
-  // },
-  // {
-  //   "id": 3,
-  //   "username": "user3",
-  //   "first_name": "User",
-  //   "last_name": "3",
-  //   "picture_url": "http://fb.com/mattuphamImage"
-  // }
-// ]
 
 class SearchBar extends Component {
   //retrieve data using ajax call
@@ -73,7 +12,8 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false
+      redirect: false,
+      clickedName: ''
     }
   }
 
@@ -83,6 +23,7 @@ class SearchBar extends Component {
 
   componentDidMount() {
     this.getAllUsers();
+    console.log(this.state)
   }
 
   getAllUsers() {
@@ -130,21 +71,27 @@ class SearchBar extends Component {
       })
     }, 500)
   }
-  
-  // abc() {
-  //   if (this.state.redirect) {
-  //     return <Redirect to={profileUrl} />
-  //     //invoke redirect to profile url function
-  //   }
-  // }
 
   render() {
-    const { isLoading, value, results, source } = this.state
+    const { isLoading, value, results, source, clickedName } = this.state
     const profileUrl = '/' + this.state.clickedName + '/profile/' + this.props.loggedInUser;
 
     if (this.state.redirect) {
       return (
       <div>
+        <Grid>
+          <div className="search-bar">
+            <Search
+              loading={isLoading}
+              onResultSelect={this.handleResultSelect.bind(this)}
+              onSearchChange={this.handleSearchChange.bind(this)}
+              results={results}
+              value={value}
+              className="search-input"
+              // {...this.props}
+            />
+          </div>
+        </Grid>
         <Redirect to={profileUrl} />
       </div>
       );
@@ -153,8 +100,6 @@ class SearchBar extends Component {
 
     return (
       <Grid>
-        {/* <Grid.Column width={2}> */}
-        {/* {this.abc} */}
         <div className="search-bar">
           <Search
             loading={isLoading}
@@ -166,182 +111,6 @@ class SearchBar extends Component {
             // {...this.props}
           />
         </div>
-        {/* </Grid.Column> */}
-        {/* <Grid.Column width={8}>
-          <Header>State</Header>
-          <pre>{JSON.stringify(this.state, null, 2)}</pre>
-          <Header>Options</Header>
-          <pre>{JSON.stringify(source, null, 2)}</pre>
-        </Grid.Column> */}
-      </Grid>
-    )
-  }
-}
-
-//       <form className="search-bar" onSubmit={this.handleSearch.bind(this)}>
-//         <input 
-//           className="search-input" 
-//           type="text" 
-//           placeholder="Search" 
-//           ref="searchUser" 
-//         />
-//         <button className="search-btn">Find</button>
-
-//       </form>
-
-export default SearchBar;
-
-// /*
-// <Grid>
-//           {/* <Grid.Column width={2}> */}
-//           {/* {this.abc} */}
-//           <div className="search-bar">
-//             <Search
-//               loading={isLoading}
-//               onResultSelect={this.handleResultSelect.bind(this)}
-//               onSearchChange={this.handleSearchChange.bind(this)}
-//               results={results}
-//               value={value}
-//               className="search-input"
-//               // {...this.props}
-//             />
-//           </div>
-//           {/* </Grid.Column> */}
-//           {/* <Grid.Column width={8}>
-//             <Header>State</Header>
-//             <pre>{JSON.stringify(this.state, null, 2)}</pre>
-//             <Header>Options</Header>
-//             <pre>{JSON.stringify(source, null, 2)}</pre>
-//           </Grid.Column> */}
-//         </Grid>
-//         */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// {/* <Grid>
-//             {/* <Grid.Column width={2}> */}
-//             {/* {this.abc} */}
-//             <div className="search-bar">
-//               <Search
-//                 loading={isLoading}
-//                 onResultSelect={this.handleResultSelect.bind(this)}
-//                 onSearchChange={this.handleSearchChange.bind(this)}
-//                 results={results}
-//                 value={value}
-//                 className="search-input"
-//                 // {...this.props}
-//               />
-//             </div>
-//             {/* </Grid.Column> */}
-//             {/* <Grid.Column width={8}>
-//               <Header>State</Header>
-//               <pre>{JSON.stringify(this.state, null, 2)}</pre>
-//               <Header>Options</Header>
-//               <pre>{JSON.stringify(source, null, 2)}</pre>
-//             </Grid.Column> */}
-//           </Grid> */}
-          // {/* {this.resetComponent()} */}
-
-/*
-const source = _.times(5, () => ({
-  title: faker.company.companyName(),
-  description: faker.company.catchPhrase(),
-  image: faker.internet.avatar(),
-  price: faker.finance.amount(0, 100, 2, '$'),
-}))
-
-// getUserInfo() {
-//   var user = this.state.username;
-//   axios.get(`/${user}`)
-//     .then((response) => {
-//       console.log('user info...', response.data);
-//       this.setState({
-//         userInfo: response.data[0]
-//       });
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     }); 
-// }
-
-
-
-
-class SearchBar extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.handleResultSelect.bind(this)
-    this.handleSearchChange.bind(this)
-    
-    this.state = {
-      isLoading: false,
-      value: '',
-      results: []
-    }
-  }
-
-  componentWillMount() {
-    this.resetComponent()
-  }
-
-  resetComponent() {
-    this.setState({ isLoading: false, results: [], value: '' })
-  }
-
-  handleResultSelect(e, { result }) {
-    this.setState({ value: result.title })
-  } 
-
-  handleSearchChange(e, { value }){
-    console.log('search val', this.state.value);
-    this.setState({ isLoading: true, value })
-
-    setTimeout(() => {
-      if (this.state.value.length < 1) return this.resetComponent()
-
-      const re = new RegExp(_.escapeRegExp(this.state.value), 'i')
-      const isMatch = result => re.test(result.title)
-
-      this.setState({
-        isLoading: false,
-        results: _.filter(source, isMatch),
-      })
-    }, 500)
-  }
-
-  render() {
-
-    return (
-      <Grid>
-        <Grid.Column width={8}>
-          <Search
-            loading={this.state.isLoading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={this.handleSearchChange}
-            results={this.state.results}
-            value={this.state.value}
-            {...this.props}
-          />
-        </Grid.Column>
-        <Grid.Column width={8}>
-          <Header>State</Header>
-          <pre>{JSON.stringify(this.state, null, 2)}</pre>
-          <Header>Options</Header>
-          <pre>{JSON.stringify(source, null, 2)}</pre>
-        </Grid.Column>
       </Grid>
     )
   }
@@ -349,7 +118,14 @@ class SearchBar extends React.Component {
 
 export default SearchBar;
 
-*/
+
+
+
+
+
+
+
+
 
 
 
