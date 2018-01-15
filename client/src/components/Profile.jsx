@@ -26,7 +26,8 @@ class Profile extends React.Component {
       profilePageInfo: '',
       isOwner: true,
       userInfo: {},
-      view: 'Timeline'
+      view: 'Timeline',
+      clickedFriend: ''
     }
   }
 
@@ -165,6 +166,12 @@ class Profile extends React.Component {
       }); 
   }
 
+  getFriendName(friend) {
+    this.setState({
+      clickedFriend: friend
+    })
+  }
+
   render() {
     return (
       <div className="profile">
@@ -173,7 +180,7 @@ class Profile extends React.Component {
         <Profile_about view={this.state.view} profilePageInfo={this.state.profilePageInfo} updateProfile={this.updateProfile.bind(this)} isOwner={this.state.isOwner} />
         <Profile_allFriends view={this.state.view} friends={this.state.friends} />
         <Profile_intro view={this.state.view} profilePageInfo={this.state.profilePageInfo} />
-        <Profile_friends friends={this.state.friends} view={this.state.view} />
+        <Profile_friends friend={this.state.clickedFriend} getFriendName={this.getFriendName.bind(this)} friends={this.state.friends} view={this.state.view} owner={this.state.profilePageOwner} user={this.state.username} />
         <Profile_photos view={this.state.view} />
         <Profile_postSection getUserPosts={this.getUserPosts.bind(this)} username={this.state.username} posts={this.state.posts} view={this.state.view} isOwner={this.state.isOwner} />
       </div>
