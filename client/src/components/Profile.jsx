@@ -32,6 +32,7 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     console.log(this.props.match.params.friendname);
     console.log(this.props.match.params.username);
     this.getUserInfo(this.state.profilePageOwner);
