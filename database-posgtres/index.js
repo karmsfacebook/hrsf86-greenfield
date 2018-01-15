@@ -2,7 +2,7 @@ const { Client } = require('pg');
 console.log('Initializing client');
 console.log('This is the database url', process.env.DATABASE_URL);
 const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgres://postgres@localhost:5432/fb_database'
+  connectionString: process.env.DATABASE_URL || 'postgres://rngo@localhost:5432/fb_database'
 });
 
 client.connect();
@@ -23,7 +23,16 @@ module.exports = {
       if (err) {
         callback(err, null);
       } else {  
-        callback(null, res.rows);
+        console.log('updating profile pic in users table...');
+        client.query(`UPDATE users set picture_url = '${change[1]}' WHERE username = '${username}'`, (err, res) => {
+          if (err) {
+            console.log('error updating profile pic in users table', err);
+          } else {  
+            console.log('updated profile pic in users table');
+            callback(null, res.rows);
+          }
+        })
+        // callback(null, res.rows);
       }  
     });
   },
