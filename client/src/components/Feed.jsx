@@ -55,7 +55,7 @@ class Feed extends React.Component {
             </Button> */}
             <Button icon labelPosition='left' fluid className="feedSideBarUserButton">
               <Icon name='user' />
-              User's Name
+              {this.props.match.params.username}
             </Button>
             <Button icon labelPosition='left' fluid className="feedSideBarUserButton">
               <Icon name='browser' />
