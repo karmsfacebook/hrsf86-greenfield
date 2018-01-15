@@ -71,7 +71,7 @@ class Profile extends React.Component {
 
   getUserProfileInfo(user) {
     // var user = this.state.profilePageOwner;
-    // console.log('user...', this.state.profilePageOwner)
+    console.log('user...', user)
     axios.get(`/${user}/profilePage`)
       .then((responseUserProfileInfo) => {
         console.log('profile page info....', responseUserProfileInfo);
