@@ -21,7 +21,7 @@ class Profile_allFriends extends React.Component {
             </Header>
           </div>
           <div className="allFriends">
-            {
+          {
             this.props.friends.slice(0, 9).map((friend) => (
               <div className="friendInAllFriends">
                 <img src={friend.picture_url} />
