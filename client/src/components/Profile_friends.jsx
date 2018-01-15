@@ -13,10 +13,10 @@ class Profile_friends extends React.Component {
   }
   handleClickedFriend(event) {
     // console.log('This is the friend', event.target);
-    this.setState({
-      username: event.target.id,
-      redirect: true
-    })
+    // this.setState({
+    //   username: event.target.id,
+    //   redirect: true
+    // })
     this.props.getFriendName(event.target.id);
   }
   render() {
