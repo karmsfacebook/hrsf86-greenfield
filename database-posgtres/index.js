@@ -172,6 +172,20 @@ module.exports = {
       }  
     });
   },
+  //retrieves all users
+  getAllUsers: (callback) => {
+    // console.log('in db getUser, looking for', username)
+    client.query(`SELECT * FROM users;`, (err, res) => {
+      if (err) {
+        console.log('Error', err)
+        callback(err, null);
+      } else {  
+        console.log('searched for user in db', res.rows)
+        callback(null, res.rows);
+      }  
+    });
+  },
+
   getUsername: (firstname, lastname, callback) => {
     client.query(`SELECT username FROM users WHERE first_name='${firstname}' AND last_name='${lastname}'`, (err, res) => {
       if (err) {
@@ -203,8 +217,7 @@ module.exports = {
     console.log('in db addUser start......', userData)
     client.query(`INSERT INTO users (username, first_name, last_name, picture_url) VALUES ('${userData.username}', '${userData.firstName}', '${userData.lastName}', '${userData.pictureUrl}');`, (err, res) => {
       if (err) {
-        console.log('Error', err)
-        callback(err, null);
+        callback(err.detail, null);
       } else {  
         console.log('added user in db!');
         callback(null, res.rows);
