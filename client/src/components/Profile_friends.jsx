@@ -1,15 +1,31 @@
 import React from 'react';
 import { Divider, Header, List, Icon, Grid, Image } from 'semantic-ui-react';
+import { Link, Redirect } from 'react-router-dom';
 
 class Profile_friends extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: props.view
+      view: props.view,
+      redirect: false,
+      username: ''
     }
   }
-
+  handleClickedFriend(event) {
+    // console.log('This is the friend', event.target);
+    // this.setState({
+    //   username: event.target.id,
+    //   redirect: true
+    // })
+    this.props.getFriendName(event.target.id);
+  }
   render() {
+    let friendUrl = '/' + this.props.friend + '/profile/' + this.props.user;
+    console.log('This is the friend URL', friendUrl);
+    // if (this.state.redirect) {
+    //   console.log(this.state.redirect);
+    //   return <Redirect push to={friendUrl} />;
+    // }
     return (
       <div className={this.props.view === 'Timeline' ? "friendsList" : "hide"}>
         <Header className="header"> 
@@ -21,11 +37,11 @@ class Profile_friends extends React.Component {
         </span>
         <div className="friends">
           {
-            this.props.friends.slice(0, 9).map((friend) => (
+            this.props.friends.slice(0, 9).map((friend, index) => (
               <div className="friend">
-                <img src={friend.picture_url} />
-                <span className="friendName"> {friend.first_name} {friend.last_name} </span>
-              </div>  
+                <Link to={friendUrl}><img src={friend.picture_url} id={friend.username} onClick={(event) => this.handleClickedFriend(event) }/></Link>
+                <Link to={friendUrl}><span className="friendName" id={friend.username} onClick={(event) => this.handleClickedFriend(event) }><strong> {friend.first_name} {friend.last_name} </strong> </span></Link>
+              </div>
             ))
           }
         </div>

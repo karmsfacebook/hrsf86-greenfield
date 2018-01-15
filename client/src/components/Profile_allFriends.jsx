@@ -21,11 +21,11 @@ class Profile_allFriends extends React.Component {
             </Header>
           </div>
           <div className="allFriends">
-            {
+          {
             this.props.friends.slice(0, 9).map((friend) => (
               <div className="friendInAllFriends">
                 <img src={friend.picture_url} />
-                <span className="friendName"> {friend.first_name} {friend.last_name} </span>
+                <a className="nameLink"><span className="friendName"> <strong> {friend.first_name} {friend.last_name} </strong> </span></a>
               </div>  
             ))
           }
