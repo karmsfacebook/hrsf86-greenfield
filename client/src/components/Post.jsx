@@ -89,9 +89,15 @@ class Post extends React.Component {
     axios.get(`/${this.props.post.first_name}/${this.props.post.last_name}`)
       .then((res) => {
         console.log('This is the username', res);
-        this.setState({
-          clickedUsername: res.data[0].username
-        })
+        if (this.state.clickedUsername !== this.props.name) {
+          this.setState({
+            clickedUsername: res.data[0].username
+          })
+        } else {
+          this.setState({
+            clickedUsername: this.props.name
+          })
+        }
       })
       .catch((err) => {
         console.log('This is the error', err);
@@ -121,7 +127,7 @@ class Post extends React.Component {
     console.log('post owner',this.props.post.first_name);
     console.log('logged in name', this.props.name)
     console.log('this is missing on own profile', this.state.clickedUsername)
-    if (!this.state.clickedUsername) {this.setState({clickedUsername: this.props.name})};
+
     let clickedProfilePath = '/' + this.state.clickedUsername + '/profile/' + this.props.name;
     console.log(clickedProfilePath);
     if (this.state.redirect) {
