@@ -211,6 +211,7 @@ body {
 
 .friend {
   text-align: center;
+  height: 85%;
 }
 
 .photosList {
@@ -422,9 +423,9 @@ textarea {
 .friendsContainer .allFriends {
   grid-row: 2;
   display: grid;
-  grid-template-rows: repeat(5, 19%);
-  grid-template-columns: repeat(6, 15.6%);
-  grid-gap: 3%;
+  grid-template-rows: repeat(4, 23%);
+  grid-template-columns: repeat(6, 14.15%);
+  grid-gap: 2%;
   margin: 2.5%;
   overflow-y: auto;
 }
@@ -434,9 +435,14 @@ textarea {
   max-height: 100%;
 }
 
-.friendInAllFriends .img {
+.friendInAllFriends img {
   max-width: 100%;
   max-height: 90%;
+  border: #e6e6e6 solid 3px;
+}
+
+.friendInAllFriends {
+  text-align: center;
 }
 /*.detail > .button {
   margin-top: 2% !important;
