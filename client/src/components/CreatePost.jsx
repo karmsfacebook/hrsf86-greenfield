@@ -29,7 +29,6 @@ class CreatePost extends React.Component {
   }
   sendPostText(event) {
     event.preventDefault();
-    // this.props.onClick(this.state.postText);
   }
   render() {
     return (
