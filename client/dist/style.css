@@ -85,7 +85,7 @@ body {
 .profile {
   display: grid;
   grid-template-rows: 5.7fr 0.8fr 5fr 8fr 5.7fr 9.6fr;
-  grid-template-columns: 0..465fr 1.2fr 1.8fr 0..465fr;
+  grid-template-columns: 0.465fr 1.2fr 1.8fr 0.465fr;
   background-color: #f2f2f2;
   grid-gap: 10px;
 }
