@@ -86,7 +86,6 @@ class Profile extends React.Component {
 
   getUserPosts(user) {
     var username = this.state.username;
-    // var profilePageOwner = this.state.profilePageOwner;
     axios.get(`/${username}/posts/${user}`)
       .then((response) => {
         this.setState({
